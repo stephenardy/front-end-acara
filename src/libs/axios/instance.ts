@@ -26,19 +26,13 @@ instance.interceptors.request.use(
     }
     return request;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error),
 );
 
 // Add a response interceptor
 instance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (response) => response,
+  (error) => Promise.reject(error),
 );
 
 export default instance;

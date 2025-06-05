@@ -1,9 +1,9 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
-
+import RegisterSuccess from "@/components/views/Auth/RegisterSuccess";
 function SuccessRegister() {
   return (
     <AuthLayout title="ACARA | Register Success">
-      <h1>Register Success</h1>
+      <RegisterSuccess />
     </AuthLayout>
   );
 }
