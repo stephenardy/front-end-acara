@@ -1,10 +1,10 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
-import RegisterPage from "@/components/views/Auth/Register";
+import Register from "@/components/views/Auth/Register";
 
-function Register() {
+function RegisterPage() {
   return (
     <AuthLayout title="ACARA | Register">
-      <RegisterPage></RegisterPage>
+      <Register />
     </AuthLayout>
   );
 }

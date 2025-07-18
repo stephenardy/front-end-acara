@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Controller } from "react-hook-form";
 import { cn } from "@/utils/cn";
 
-function RegisterPage() {
+function Register() {
   const {
     isVisible,
     handleVisiblePassword,
@@ -36,8 +36,8 @@ function RegisterPage() {
       </div>
       <Card>
         <CardBody className="p-8">
-          <h2 className="text-xl font-bold text-danger-500">Create Account</h2>
-          <p className="mb-4 text-small">
+          <h2 className="text-2xl font-bold text-danger-500">Create Account</h2>
+          <p className="mb-4 mt-2 text-small">
             Have an account?&nbsp;
             <Link href="/auth/login" className="font-semibold text-danger-400">
               Login here
@@ -179,4 +179,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default Register;
