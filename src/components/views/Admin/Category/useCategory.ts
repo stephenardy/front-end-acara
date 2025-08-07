@@ -37,7 +37,7 @@ const useCategory = () => {
     data: dataCategory,
     isLoading: isLoadingCategory,
     isRefetching: isRefetchingCategory,
-    // refetch: refetchCategory, gperlu lgi karna udh ada current.. di queryKey nya
+    refetch: refetchCategory,
   } = useQuery({
     queryKey: ["Category", currentPage, currentLimit, currentSearch], //current.. ditaro disini supaya melakukan refetch kalau ada perubahan pada var tsb (sama kyk fn refetch)
     queryFn: () => getCategories(),
@@ -92,6 +92,7 @@ const useCategory = () => {
     dataCategory,
     isLoadingCategory,
     isRefetchingCategory,
+    refetchCategory,
     currentPage,
     currentLimit,
     handleChangeLimit,
