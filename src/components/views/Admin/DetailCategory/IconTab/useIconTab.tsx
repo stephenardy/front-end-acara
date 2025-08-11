@@ -9,8 +9,8 @@ const schemaUpdateIcon = yup.object().shape({
 
 const useIconTab = () => {
   const {
-    mutateDeleteFile,
-    mutateUploadFile,
+    handleDeleteFile,
+    handleUploadFile,
     isPendingMutateDeleteFile,
     isPendingMutateUploadFile,
   } = useMediaHandling();
@@ -26,32 +26,25 @@ const useIconTab = () => {
   } = useForm({ resolver: yupResolver(schemaUpdateIcon) });
 
   const preview = watchUpdateIcon("icon");
+  const fileUrl = getValuesUpdateIcon("icon");
 
   // Upload Icon
   const handleUploadIcon = (
     files: FileList,
     onChange: (files: FileList | undefined) => void,
   ) => {
-    if (files.length !== 0) {
-      onChange(files);
-      mutateUploadFile({
-        file: files[0],
-        callback: (fileUrl: string) => {
-          // callback dijalankan setelah upload file (mutate) selesai dijalankan
-          setValueUpdateIcon("icon", fileUrl);
-        },
-      });
-    }
+    handleUploadFile(files, onChange, (fileUrl: string | undefined) => {
+      if (fileUrl) {
+        setValueUpdateIcon("icon", fileUrl);
+      }
+    });
   };
 
   // Delete Icon
   const handleDeleteIcon = (
     onChange: (files: FileList | undefined) => void,
   ) => {
-    const fileUrl = getValuesUpdateIcon("icon");
-    if (typeof fileUrl === "string") {
-      mutateDeleteFile({ fileUrl, callback: () => onChange(undefined) });
-    }
+    handleDeleteFile(fileUrl, () => onChange(undefined));
   };
 
   return {
