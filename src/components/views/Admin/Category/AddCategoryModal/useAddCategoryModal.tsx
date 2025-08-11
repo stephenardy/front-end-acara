@@ -18,10 +18,10 @@ const useAddCategoryModal = () => {
   const { setToaster } = useContext(ToasterContext);
 
   const {
-    mutateDeleteFile,
-    mutateUploadFile,
     isPendingMutateDeleteFile,
     isPendingMutateUploadFile,
+    handleUploadFile,
+    handleDeleteFile,
   } = useMediaHandling();
 
   const {
@@ -35,48 +35,34 @@ const useAddCategoryModal = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const preview = watch("icon");
+  const fileUrl = getValues("icon");
 
   // Upload Icon
   const handleUploadIcon = (
     files: FileList,
     onChange: (files: FileList | undefined) => void,
   ) => {
-    if (files.length !== 0) {
-      onChange(files);
-      mutateUploadFile({
-        file: files[0],
-        callback: (fileUrl: string) => {
-          // callback dijalankan setelah upload file (mutate) selesai dijalankan
-          setValue("icon", fileUrl);
-        },
-      });
-    }
+    handleUploadFile(files, onChange, (fileUrl: string | undefined) => {
+      // callback dijalankan setelah upload file (mutate) selesai dijalankan
+      if (fileUrl) {
+        setValue("icon", fileUrl);
+      }
+    });
   };
 
   // Delete Icon
   const handleDeleteIcon = (
     onChange: (files: FileList | undefined) => void,
   ) => {
-    const fileUrl = getValues("icon");
-    if (typeof fileUrl === "string") {
-      mutateDeleteFile({ fileUrl, callback: () => onChange(undefined) });
-    }
+    handleDeleteFile(fileUrl, () => onChange(undefined));
   };
 
+  // Delete Icon when Close Form Modal
   const handleOnClose = (onClose: () => void) => {
-    const fileUrl = getValues("icon");
-    if (typeof fileUrl === "string") {
-      mutateDeleteFile({
-        fileUrl,
-        callback: () => {
-          reset();
-          onClose();
-        },
-      });
-    } else {
+    handleDeleteFile(fileUrl, () => {
       reset();
       onClose();
-    }
+    });
   };
 
   // Add Category
