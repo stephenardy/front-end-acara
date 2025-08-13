@@ -26,8 +26,8 @@ interface PropTypes {
   isLoading?: boolean;
   onClickButtonTopContent?: () => void;
   renderCell: (item: Record<string, unknown>, columnKey: Key) => ReactNode;
-  showLimit: boolean;
-  showSearch: boolean;
+  showLimit?: boolean;
+  showSearch?: boolean;
   totalPages: number;
 }
 

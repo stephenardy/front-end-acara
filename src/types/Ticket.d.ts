@@ -4,7 +4,7 @@ interface ITicket {
   name?: string;
   events?: string;
   description?: string;
-  quantity?: string;
+  quantity?: number | string;
 }
 
 export type { ITicket };
