@@ -7,15 +7,21 @@ import {
   CardHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { Key, ReactNode, useCallback } from "react";
+import { Key, ReactNode, useCallback, useState } from "react";
 import { COLUMN_LISTS_TICKET } from "./ticket.constants";
 import DataTable from "@/components/ui/DataTable";
 import useTicketTab from "./useTicketTab";
 import AddTicketModal from "./AddTicketModal";
+import DeleteTicketModal from "./DeleteTicketModal";
+import { ITicket } from "@/types/Ticket";
 
 const TicketTab = () => {
   const { dataTicket, isPendingTicket, isRefetchingTicket, refetchTicket } =
     useTicketTab();
+
+  const [selectedDataTicket, setSelectedDataTicket] = useState<ITicket | null>(
+    null,
+  );
 
   const addTicketModal = useDisclosure();
   const deleteTicketModal = useDisclosure();
@@ -35,7 +41,7 @@ const TicketTab = () => {
                 updateTicketModal.onOpen();
               }}
               onPressButtonDelete={() => {
-                // setSelectedId(`${event._id}`);
+                setSelectedDataTicket(ticket as ITicket);
                 deleteTicketModal.onOpen();
               }}
             />
@@ -58,7 +64,9 @@ const TicketTab = () => {
               Manage ticket of this event
             </p>
           </div>
-          <Button color="danger" onPress={addTicketModal.onOpen}>Add New Ticket</Button>
+          <Button color="danger" onPress={addTicketModal.onOpen}>
+            Add New Ticket
+          </Button>
         </CardHeader>
         <CardBody className="pt-8">
           <DataTable
@@ -75,6 +83,13 @@ const TicketTab = () => {
       </Card>
 
       <AddTicketModal {...addTicketModal} refetchTicket={refetchTicket} />
+
+      <DeleteTicketModal
+        {...deleteTicketModal}
+        refetchTicket={refetchTicket}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
+      />
     </>
   );
 };

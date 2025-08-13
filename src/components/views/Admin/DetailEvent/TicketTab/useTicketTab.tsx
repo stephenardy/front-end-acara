@@ -1,6 +1,7 @@
 import ticketServices from "@/services/ticket.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const useTicketTab = () => {
   const { query, isReady } = useRouter();
@@ -23,9 +24,9 @@ const useTicketTab = () => {
 
   return {
     dataTicket,
-    refetchTicket,
     isPendingTicket,
     isRefetchingTicket,
+    refetchTicket,
   };
 };
 
