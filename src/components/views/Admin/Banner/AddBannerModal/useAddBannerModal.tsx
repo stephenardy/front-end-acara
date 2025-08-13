@@ -9,9 +9,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  image: yup.mixed<FileList | string>().required("Please input title"),
-  title: yup.string().required("Please input name"),
-  isShow: yup.string().required("Please select isShow"),
+  image: yup.mixed<FileList | string>().required("Please input image"),
+  title: yup.string().required("Please input title"),
+  isShow: yup.string().required("Select show status"),
 });
 
 const useAddBannerModal = () => {
