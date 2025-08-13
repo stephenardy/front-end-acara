@@ -20,13 +20,14 @@ const schema = yup.object().shape({
   category: yup.string().required("Please select category"),
   startDate: yup.mixed<DateValue>().required("please select start date"),
   endDate: yup.mixed<DateValue>().required("please select end date"),
-  isPublished: yup.string().required("Please select status"),
+  isPublish: yup.string().required("Please select status"),
   isFeatured: yup.string().required("Please select featured"),
   description: yup.string().required("Please input description"),
   isOnline: yup.string().required("Please select online or offline"),
   region: yup.string().required("Please select region"),
-  longitude: yup.string().required("Please select longitude coordinate"),
-  latitude: yup.string().required("Please select latitude coordinate"),
+  address: yup.string().required("Please input address"),
+  longitude: yup.string().required("Please input longitude coordinates"),
+  latitude: yup.string().required("Please input latitude coordinates"),
   banner: yup.mixed<FileList | string>().required("Please input banner"),
 });
 
@@ -135,15 +136,14 @@ const useAddEventModal = () => {
 
   const handleAddEvent = (data: IEventForm) => {
     const payload = {
+      // beberapa data perlu di convert/handle manual
       ...data,
-      isFeatured: Boolean(data.isFeatured), // karena di form tipenya string
-      isPublished: Boolean(data.isPublished),
-      isOnline: Boolean(data.isOnline),
       startDate: data.startDate ? toDateStandard(data.startDate) : "",
       endDate: data.endDate ? toDateStandard(data.endDate) : "",
       location: {
+        address: `${data.address}`,
         region: `${data.region}`, // jdiin string
-        coordinate: [Number(data.latitude), Number(data.longitude)],
+        coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,
     };

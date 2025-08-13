@@ -1,11 +1,11 @@
 import { parseAbsoluteToLocal } from "@internationalized/date";
 import { DateValue } from "@nextui-org/react";
 
-const standardTime = (time: number) => {
-  if (time < 10) {
-    return `0${time}`;
+const standardDate = (date: number) => {
+  if (date < 10) {
+    return `0${date}`;
   } else {
-    return time;
+    return date;
   }
 };
 
@@ -14,11 +14,11 @@ const toDateStandard = (date: DateValue) => {
   const month = date.month;
   const day = date.day;
 
-  const hour = "hour" in date ? standardTime(date.hour) : Number("00");
-  const minute = "minute" in date ? standardTime(date.minute) : Number("00");
-  const second = "second" in date ? standardTime(date.second) : Number("00");
+  const hour = "hour" in date ? date.hour : Number("00");
+  const minute = "minute" in date ? date.minute : Number("00");
+  const second = "second" in date ? date.second : Number("00");
 
-  const result = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  const result = `${standardDate(year)}-${standardDate(month)}-${standardDate(day)} ${standardDate(hour)}:${standardDate(minute)}:${standardDate(second)}`;
 
   return result;
 };

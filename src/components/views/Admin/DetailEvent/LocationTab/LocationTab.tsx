@@ -47,15 +47,17 @@ const LocationTab = (props: PropTypes) => {
 
   useEffect(() => {
     if (dataEvent) {
+      // refresh existing data
       setValueUpdateLocation("isOnline", `${dataEvent?.isOnline}`);
       setValueUpdateLocation("region", `${dataEvent?.location?.region}`);
+      setValueUpdateLocation("address", `${dataEvent?.location?.address}`);
       setValueUpdateLocation(
         "latitude",
-        `${dataEvent?.location?.coordinate[0]}`,
+        `${dataEvent?.location?.coordinates[0]}`,
       );
       setValueUpdateLocation(
         "longitude",
-        `${dataEvent?.location?.coordinate[1]}`,
+        `${dataEvent?.location?.coordinates[1]}`,
       );
     }
   }, [dataEvent]);
@@ -142,7 +144,27 @@ const LocationTab = (props: PropTypes) => {
             )}
           </Skeleton>
           <Skeleton
-            isLoaded={!!dataEvent.location?.coordinate[0]}
+            isLoaded={!!dataEvent?.location?.address}
+            className="rounded-lg"
+          >
+            <Controller
+              name="address"
+              control={controlUpdateLocation}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  label="Address"
+                  labelPlacement="outside"
+                  variant="bordered"
+                  type="text"
+                  isInvalid={errorsUpdateLocation.address !== undefined}
+                  errorMessage={errorsUpdateLocation.address?.message}
+                />
+              )}
+            />
+          </Skeleton>
+          <Skeleton
+            isLoaded={!!dataEvent.location?.coordinates[0]}
             className="rounded-lg"
           >
             <Controller
@@ -161,7 +183,7 @@ const LocationTab = (props: PropTypes) => {
             />
           </Skeleton>
           <Skeleton
-            isLoaded={!!dataEvent.location?.coordinate[1]}
+            isLoaded={!!dataEvent.location?.coordinates[1]}
             className="rounded-lg"
           >
             <Controller

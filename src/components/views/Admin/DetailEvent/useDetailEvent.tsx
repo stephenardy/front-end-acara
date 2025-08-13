@@ -56,8 +56,6 @@ const useDetailEvent = () => {
   const handleUpdateInfo = (data: IEventForm) => {
     const payload = {
       ...data,
-      isFeatured: Boolean(data.isFeatured), // karena di form tipenya string
-      isPublished: Boolean(data.isPublished),
       startDate: data.startDate ? toDateStandard(data.startDate) : "",
       endDate: data.endDate ? toDateStandard(data.endDate) : "",
     };
@@ -70,9 +68,11 @@ const useDetailEvent = () => {
     const payload = {
       isOnline: Boolean(data.isOnline),
       location: {
+        address: `${data.address}`,
         region: `${data.region}`,
-        coordinate: [Number(data.latitude), Number(data.longitude)],
+        coordinates: [Number(data.latitude), Number(data.longitude)],
       },
+      banner: data.banner,
     };
 
     mutateUpdateEvent(payload);

@@ -11,13 +11,9 @@ const schemaUpdateInfo = yup.object().shape({
   category: yup.string().required("Please select category"),
   startDate: yup.mixed<DateValue>().required("please select start date"),
   endDate: yup.mixed<DateValue>().required("please select end date"),
-  isPublished: yup.string().required("Please select status"),
+  isPublish: yup.string().required("Please select status"),
   isFeatured: yup.string().required("Please select featured"),
   description: yup.string().required("Please input description"),
-  isOnline: yup.string().required("Please select online or offline"),
-  region: yup.string().required("Please select region"),
-  longitude: yup.string().required("Please select longitude coordinate"),
-  latitude: yup.string().required("Please select latitude coordinate"),
 });
 
 const useInfoTab = () => {

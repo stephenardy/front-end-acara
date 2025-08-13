@@ -12,20 +12,22 @@ interface IEvent {
   slug?: string;
   category?: string;
   isFeatured?: boolean | string;
-  isPublished?: boolean | string;
+  isPublish?: boolean | string;
   isOnline?: boolean | string;
   description?: string;
   startDate?: string;
   endDate?: string;
   location?: {
+    address: string;
     region: string;
-    coordinate: number[];
+    coordinates: number[];
   };
   banner?: string | FileList;
 }
 
 // ovveride dan tambahin beberapa data yg perlu di form
 interface IEventForm extends IEvent {
+  address?: string;
   region?: string;
   startDate?: DateValue;
   endDate?: DateValue;

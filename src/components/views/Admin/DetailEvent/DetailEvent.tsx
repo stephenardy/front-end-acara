@@ -36,7 +36,7 @@ const DetailEvent = () => {
       <Tab key="location" title="Location">
         <LocationTab
           dataEvent={dataEvent}
-          dataDefaultRegion={dataDefaultRegion?.data?.data[0].name}
+          dataDefaultRegion={dataDefaultRegion?.data?.data[0]?.name}
           onUpdate={handleUpdateLocation}
           isPendingDefaultRegion={isPendingDefaultRegion}
           isPendingUpdate={isPendingMutateUpdateEvent}
