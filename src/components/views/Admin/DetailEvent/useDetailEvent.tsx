@@ -11,14 +11,14 @@ const useDetailEvent = () => {
   const { setToaster } = useContext(ToasterContext);
 
   // Get Event By Id
-  const getEventById = async (id: string) => {
-    const { data } = await eventServices.getEventById(id);
+  const getEventById = async () => {
+    const { data } = await eventServices.getEventById(`${query.id}`);
     return data.data;
   };
 
   const { data: dataEvent, refetch: refetchEvent } = useQuery({
     queryKey: ["Event"],
-    queryFn: () => getEventById(`${query.id}`),
+    queryFn: getEventById,
     enabled: isReady,
   });
 
