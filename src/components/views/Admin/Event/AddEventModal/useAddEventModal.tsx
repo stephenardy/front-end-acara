@@ -12,7 +12,6 @@ import useDebounce from "@/hooks/useDebounce";
 import { DELAY } from "@/constants/list.constants";
 import { toDateStandard } from "@/utils/date";
 import { IEvent, IEventForm } from "@/types/Event";
-import { getLocalTimeZone, now } from "@internationalized/date";
 
 const schema = yup.object().shape({
   name: yup.string().required("Please input name"),
@@ -55,9 +54,6 @@ const useAddEventModal = () => {
 
   const preview = watch("banner");
   const fileUrl = getValues("banner");
-
-  setValue("startDate", now(getLocalTimeZone()));
-  setValue("endDate", now(getLocalTimeZone()));
 
   // Upload Banner
   const handleUploadBanner = (
@@ -138,8 +134,8 @@ const useAddEventModal = () => {
     const payload = {
       // beberapa data perlu di convert/handle manual
       ...data,
-      startDate: data.startDate ? toDateStandard(data.startDate) : "",
-      endDate: data.endDate ? toDateStandard(data.endDate) : "",
+      startDate: toDateStandard(data.startDate as DateValue),
+      endDate: toDateStandard(data.endDate as DateValue),
       location: {
         address: `${data.address}`,
         region: `${data.region}`, // jdiin string
@@ -165,6 +161,7 @@ const useAddEventModal = () => {
     isPendingMutateUploadFile,
     handleDeleteBanner,
     isPendingMutateDeleteFile,
+    setValue,
     handleOnClose,
 
     dataCategory,

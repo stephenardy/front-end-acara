@@ -12,7 +12,7 @@ function AuthLayout(props: PropTypes) {
   return (
     <div className="flex min-h-screen min-w-full flex-col items-center justify-center gap-10 py-10 lg:py-0">
       <PageHead title={title} />
-      <section className="max-w-screen-3xl 3xl:container p-6">
+      <section className="max-w-screen-2xl p-6 2xl:container">
         {children}
       </section>
     </div>
