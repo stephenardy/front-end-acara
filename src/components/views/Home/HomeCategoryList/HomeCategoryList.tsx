@@ -17,7 +17,7 @@ const HomeCategoryList = (props: PropTypes) => {
       </CardHeader>
       <CardBody className="mt-4 p-0">
         <div className="grid auto-cols-[8rem] grid-flow-col gap-4 overflow-x-auto lg:grid-cols-8">
-          {!isLoading
+          {!isLoading && categories
             ? categories.map((category) => (
                 <Link
                   key={`category-${category._id}`}

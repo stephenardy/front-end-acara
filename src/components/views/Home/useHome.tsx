@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useHome = () => {
   const getBanners = async () => {
-    let params = `limit=${LIMIT_BANNER}&page=${PAGE_DEFAULT}`;
+    let params = `limit=${LIMIT_BANNER}&page=${PAGE_DEFAULT}`; //&isShow=true
     const res = await bannerServices.getBanners(params);
     const { data } = res;
     return data;
@@ -34,7 +34,7 @@ const useHome = () => {
       queryKey: ["FeaturedEvents"],
       queryFn: () =>
         getEvents(
-          `limit=${LIMIT_EVENT}&page=${PAGE_DEFAULT}$isPublished=true&isFeatured=true`,
+          `limit=${LIMIT_EVENT}&page=${PAGE_DEFAULT}&isPublish=true&isFeatured=true`,
         ),
       enabled: true,
     });
@@ -43,7 +43,7 @@ const useHome = () => {
     {
       queryKey: ["LatestEvents"],
       queryFn: () =>
-        getEvents(`limit=${LIMIT_EVENT}&page=${PAGE_DEFAULT}$isPublished=true`),
+        getEvents(`limit=${LIMIT_EVENT}&page=${PAGE_DEFAULT}&isPublish=true`),
       enabled: true,
     },
   );
