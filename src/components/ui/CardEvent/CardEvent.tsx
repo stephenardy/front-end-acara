@@ -21,7 +21,7 @@ const CardEvent = (props: PropTypes) => {
       shadow="sm"
       isPressable
       as={Link}
-      href={`/events/${event?.slug}`}
+      href={`/event/${event?.slug}`}
       key={key}
       className={cn(className, "cursor-pointer")}
     >

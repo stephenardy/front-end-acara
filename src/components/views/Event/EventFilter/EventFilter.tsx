@@ -32,8 +32,8 @@ const EventFilter = () => {
   }, [isSuccessGetCategory]);
   return (
     <div className="h-fit w-full rounded-xl border p-4 lg:sticky lg:top-20 lg:w-80">
-      <h4 className="text-xl font-semibold">Filter</h4>
-      <div>
+      <h4 className="mb-2 text-xl font-semibold">Filter</h4>
+      <div className="flex flex-col gap-3">
         {isSuccessGetCategory ? (
           <Fragment>
             {/* Category */}
