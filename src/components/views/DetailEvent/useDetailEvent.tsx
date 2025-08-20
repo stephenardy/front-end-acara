@@ -74,7 +74,6 @@ const useDetailEvent = () => {
   };
 
   const createOrder = async () => {
-    console.log(cart);
     const { data } = await orderServices.createOrder(cart);
     return data.data;
   };
