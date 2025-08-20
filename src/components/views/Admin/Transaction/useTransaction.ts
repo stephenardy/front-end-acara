@@ -2,15 +2,17 @@ import useChangeUrl from "@/hooks/useChangeUrl";
 import orderServices from "@/services/order.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const useTransaction = () => {
   const router = useRouter();
   const { currentLimit, currentPage, currentSearch } = useChangeUrl();
+  const [selectedId, setSelectedId] = useState("");
 
-  const getMemberTransactions = async () => {
+  const getAdminTransactions = async () => {
     let params = `limit=${currentLimit}&page=${currentPage}&search=${currentSearch}`;
 
-    const res = await orderServices.getMemberOrder(params);
+    const res = await orderServices.getOrders(params);
     const { data } = res;
     return data;
   };
@@ -22,8 +24,8 @@ const useTransaction = () => {
     isRefetching: isRefetchingTransactions,
     refetch: refetchTransactions,
   } = useQuery({
-    queryKey: ["MemberTransaction", currentPage, currentLimit, currentSearch], //current.. ditaro disini supaya melakukan refetch kalau ada perubahan pada var tsb (sama kyk fn refetch)
-    queryFn: () => getMemberTransactions(),
+    queryKey: ["AdminTransaction", currentPage, currentLimit, currentSearch], //current.. ditaro disini supaya melakukan refetch kalau ada perubahan pada var tsb (sama kyk fn refetch)
+    queryFn: () => getAdminTransactions(),
     enabled: router.isReady && !!currentPage && !!currentLimit, // fetch hanya jalan ketika kondisi ini ada (router ready, page ada, limit ada)
   });
 
@@ -32,6 +34,8 @@ const useTransaction = () => {
     isLoadingTransactions,
     isRefetchingTransactions,
     refetchTransactions,
+    selectedId,
+    setSelectedId,
   };
 };
 

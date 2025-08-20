@@ -1,5 +1,5 @@
 import DataTable from "@/components/ui/DataTable";
-import { Chip } from "@nextui-org/react";
+import { Chip, useDisclosure } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LISTS_TRANSACTION } from "./Transaction.constants";
@@ -7,6 +7,7 @@ import useChangeUrl from "@/hooks/useChangeUrl";
 import DropdownAction from "@/components/commons/DropdownAction";
 import useTransaction from "./useTransaction";
 import { convertIDR } from "@/utils/currency";
+import DeleteTransactionModal from "./DeleteTransactionModal";
 
 const Transaction = () => {
   const { push, isReady, query } = useRouter();
@@ -15,7 +16,11 @@ const Transaction = () => {
     isLoadingTransactions,
     isRefetchingTransactions,
     refetchTransactions,
+    selectedId,
+    setSelectedId,
   } = useTransaction();
+
+  const deleteTransactionModal = useDisclosure();
 
   const { setUrl } = useChangeUrl();
 
@@ -48,7 +53,10 @@ const Transaction = () => {
               onPressButtonDetail={() =>
                 push(`/member/transaction/${transaction?.orderId}`)
               }
-              hideButtonDelete
+              onPressButtonDelete={() => {
+                setSelectedId(`${transaction.orderId}`);
+                deleteTransactionModal.onOpen();
+              }}
             />
           );
 
@@ -71,6 +79,13 @@ const Transaction = () => {
           totalPages={dataTransactions?.pagination.totalPages}
         />
       )}
+
+      <DeleteTransactionModal
+        {...deleteTransactionModal}
+        refetchTransactions={refetchTransactions}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+      />
     </section>
   );
 };
