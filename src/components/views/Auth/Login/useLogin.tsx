@@ -31,6 +31,7 @@ const useLogin = () => {
     formState: { errors },
     reset,
     setError,
+    setValue,
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -56,6 +57,8 @@ const useLogin = () => {
     },
     onSuccess: () => {
       reset();
+      setValue("identifier", "");
+      setValue("password", "");
       setToaster({
         type: "success",
         message: "Login success",

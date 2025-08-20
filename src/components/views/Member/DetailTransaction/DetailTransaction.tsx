@@ -69,7 +69,7 @@ const DetailTransaction = () => {
             </div>
           </div>
         </div>
-        {dataTransactions.status === "completed" && (
+        {dataTransactions?.status === "completed" && (
           <div className="flex flex-col gap-2">
             <h4 className="font-bold">Ticket:</h4>
             <div className="mt-2 flex flex-col gap-4">

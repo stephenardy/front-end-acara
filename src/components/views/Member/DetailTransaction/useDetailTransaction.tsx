@@ -4,11 +4,9 @@ import orderServices from "@/services/order.service";
 import ticketServices from "@/services/ticket.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { useContext } from "react";
 
 const useDetailTransaction = () => {
   const { query, isReady } = useRouter();
-  const { setToaster } = useContext(ToasterContext);
 
   const getOrderById = async () => {
     const { data } = await orderServices.getOrderById(`${query.id}`);
