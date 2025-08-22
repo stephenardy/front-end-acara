@@ -135,7 +135,10 @@ const LandingPageLayoutNavbar = () => {
             <Dropdown>
               <DropdownTrigger>
                 <Avatar
-                  src={dataProfile?.profilePicture}
+                  src={
+                    dataProfile?.profilePicture ||
+                    "/images/general/default-profile-picture.jpg"
+                  }
                   className="cursor-pointer"
                   showFallback
                 />
@@ -150,7 +153,13 @@ const LandingPageLayoutNavbar = () => {
                 >
                   Admin
                 </DropdownItem>
-                <DropdownItem key="profile" href="/member/profile">
+                <DropdownItem
+                  key="profile"
+                  href="/member/profile"
+                  className={cn({
+                    hidden: dataProfile?.role !== "member",
+                  })}
+                >
                   Profile
                 </DropdownItem>
                 <DropdownItem key="signout" onPress={() => signOut()}>
@@ -192,7 +201,11 @@ const LandingPageLayoutNavbar = () => {
                   Admin
                 </Link>
               </NavbarMenuItem>
-              <NavbarMenuItem>
+              <NavbarMenuItem
+                className={cn({
+                  hidden: dataProfile?.role !== "member",
+                })}
+              >
                 <Link
                   href="/member/profile"
                   className="font-medium text-default-700 hover:text-danger"

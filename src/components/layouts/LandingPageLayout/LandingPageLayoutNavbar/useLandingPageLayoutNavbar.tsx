@@ -3,11 +3,14 @@ import useDebounce from "@/hooks/useDebounce";
 import authServices from "@/services/auth.service";
 import eventServices from "@/services/event.service";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 
 const useLandingPageLayoutNavbar = () => {
   const { isReady } = useRouter();
+  const { data: session, status } = useSession();
+
   const debounce = useDebounce();
   const [search, setSearch] = useState("");
 
@@ -19,7 +22,7 @@ const useLandingPageLayoutNavbar = () => {
   const { data: dataProfile } = useQuery({
     queryKey: ["Profile"],
     queryFn: getProfile,
-    enabled: isReady,
+    enabled: status === "authenticated",
   });
 
   const getEvents = async () => {

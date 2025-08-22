@@ -1,5 +1,5 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
-import Transaction from "@/components/views/Member/Transaction";
+import Transaction from "@/components/views/Admin/Transaction";
 
 const TransactionAdminPage = () => {
   return (
