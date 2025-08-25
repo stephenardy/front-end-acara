@@ -136,8 +136,10 @@ const LandingPageLayoutNavbar = () => {
               <DropdownTrigger>
                 <Avatar
                   src={
-                    dataProfile?.profilePicture ||
-                    "/images/general/default-profile-picture.jpg"
+                    !dataProfile?.profilePicture ||
+                    dataProfile?.profilePicture === "user.jpg"
+                      ? "/images/general/user.jpg"
+                      : dataProfile?.profilePicture
                   }
                   className="cursor-pointer"
                   showFallback
@@ -189,30 +191,26 @@ const LandingPageLayoutNavbar = () => {
           ))}
           {session.status === "authenticated" ? (
             <Fragment>
-              <NavbarMenuItem
-                className={cn({
-                  hidden: dataProfile?.role !== "admin",
-                })}
-              >
-                <Link
-                  href="/admin/event"
-                  className="font-medium text-default-700 hover:text-danger"
-                >
-                  Admin
-                </Link>
-              </NavbarMenuItem>
-              <NavbarMenuItem
-                className={cn({
-                  hidden: dataProfile?.role !== "member",
-                })}
-              >
-                <Link
-                  href="/member/profile"
-                  className="font-medium text-default-700 hover:text-danger"
-                >
-                  Profile
-                </Link>
-              </NavbarMenuItem>
+              {dataProfile?.role === "admin" && (
+                <NavbarMenuItem>
+                  <Link
+                    href="/admin/event"
+                    className="font-medium text-default-700 hover:text-danger"
+                  >
+                    Admin
+                  </Link>
+                </NavbarMenuItem>
+              )}
+              {dataProfile?.role === "member" && (
+                <NavbarMenuItem>
+                  <Link
+                    href="/member/profile"
+                    className="font-medium text-default-700 hover:text-danger"
+                  >
+                    Profile
+                  </Link>
+                </NavbarMenuItem>
+              )}
               <NavbarMenuItem>
                 <Button
                   onPress={() => signOut()}

@@ -20,11 +20,13 @@ interface IActivation {
 
 interface UserExtended extends User {
   accessToken?: string;
+  refreshToken?: string;
   role?: string;
 }
 
 interface SessionExtended extends Session {
   accessToken?: string;
+  refreshToken?: string;
 }
 
 interface JWTExended extends JWT {

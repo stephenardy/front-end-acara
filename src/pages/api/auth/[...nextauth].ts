@@ -1,7 +1,12 @@
 import environment from "@/config/environtment";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWTExended, SessionExtended, UserExtended } from "@/types/Auth";
+import {
+  ILogin,
+  JWTExended,
+  SessionExtended,
+  UserExtended,
+} from "@/types/Auth";
 import authServices from "@/services/auth.service";
 
 export default NextAuth({
@@ -21,31 +26,24 @@ export default NextAuth({
       async authorize(
         credentials: Record<"identifier" | "password", string> | undefined,
       ): Promise<UserExtended | null> {
-        const { identifier, password } = credentials as {
-          identifier: string;
-          password: string;
-        };
+        const { identifier, password } = credentials as ILogin;
 
         const result = await authServices.login({
           identifier,
           password,
         });
 
-        const accessToken = result.data.data;
+        const { accessToken } = result.data.data;
+
         const me = await authServices.getProfileWithToken(accessToken);
         const user = me.data.data;
 
-        if (
-          accessToken &&
-          result.status === 200 &&
-          user._id &&
-          me.status === 200
-        ) {
+        if (accessToken && user._id) {
           user.accessToken = accessToken;
+          // user.refreshToken = refreshToken;
           return user;
-        } else {
-          return null;
         }
+        return null;
       },
     }),
   ],
@@ -60,9 +58,9 @@ export default NextAuth({
       if (user) {
         token.user = user;
       }
-
       return token;
     },
+
     async session({
       session,
       token,
@@ -72,6 +70,7 @@ export default NextAuth({
     }) {
       session.user = token.user;
       session.accessToken = token.user?.accessToken;
+      // session.refreshToken = token.user?.refreshToken;
       return session;
     },
   },

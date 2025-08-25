@@ -16,13 +16,21 @@ const DashboardLayout = (props: PropTypes) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <PageHead title={title}></PageHead>
+      <PageHead title={title} />
       <div className="flex max-w-screen-2xl 2xl:container">
+        {open && (
+          <div
+            className="fixed inset-0 z-40 bg-black/30 lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+
         <DashboardLayoutSidebar
           sidebarItems={type === "admin" ? SIDEBAR_ADMIN : SIDEBAR_MEMBER}
           isOpen={open}
         />
-        <div className="h-screen w-full overflow-auto p-8">
+
+        <div className="relative z-0 h-screen w-full overflow-y-auto p-8">
           <Navbar
             className="flex justify-between bg-transparent px-0"
             isBlurred={false}
