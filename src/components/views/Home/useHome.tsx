@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useHome = () => {
   const getBanners = async () => {
-    let params = `limit=${LIMIT_BANNER}&page=${PAGE_DEFAULT}`; //&isShow=true
+    let params = `limit=${LIMIT_BANNER}&page=${PAGE_DEFAULT}&isShow=true`;
     const res = await bannerServices.getBanners(params);
     const { data } = res;
     return data;

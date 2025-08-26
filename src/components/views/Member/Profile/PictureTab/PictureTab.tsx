@@ -13,6 +13,7 @@ import { Controller } from "react-hook-form";
 import { useEffect } from "react";
 import usePictureTab from "./usePictureTab";
 import { IProfile } from "@/types/Auth";
+import { resolveImagePath } from "@/utils/resolveImagePath";
 
 interface PropTypes {
   currentPicture: string;
@@ -43,6 +44,9 @@ const PictureTab = (props: PropTypes) => {
       resetUpdatePicture();
     }
   }, [isSuccessUpdate]);
+
+  const imageSrc = resolveImagePath(currentPicture);
+
   return (
     <Card className="w-full p-4 lg:w-1/3">
       <CardHeader className="flex-col items-center">
@@ -61,11 +65,11 @@ const PictureTab = (props: PropTypes) => {
               Current Profile Picture
             </p>
             <Skeleton
-              isLoaded={!!currentPicture}
+              isLoaded={!isPendingUpdate}
               className="aspect-square w-full rounded-lg"
             >
               <Avatar
-                src={currentPicture}
+                src={imageSrc}
                 alt="picture"
                 showFallback
                 className="aspect-square h-full w-full"
