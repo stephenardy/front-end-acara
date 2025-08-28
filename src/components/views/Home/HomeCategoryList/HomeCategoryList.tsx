@@ -13,7 +13,7 @@ const HomeCategoryList = (props: PropTypes) => {
   return (
     <Card className="mx-6 mb-8 p-8 lg:mx-0">
       <CardHeader className="p-0">
-        <h1 className="text-2xl font-bold text-danger">Event By Category</h1>
+        <h1 className="text-2xl font-bold text-secondary">Event By Category</h1>
       </CardHeader>
       <CardBody className="mt-4 p-0">
         <div className="grid auto-cols-[8rem] grid-flow-col gap-4 overflow-x-auto lg:grid-cols-8">

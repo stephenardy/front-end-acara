@@ -126,14 +126,14 @@ const AddBannerModal = (props: PropTypes) => {
           </ModalBody>
           <ModalFooter>
             <Button
-              color="danger"
+              color="secondary"
               variant="flat"
               onPress={() => handleOnClose(onClose)}
               disabled={disabledSubmit}
             >
               Cancel
             </Button>
-            <Button color="danger" type="submit" disabled={disabledSubmit}>
+            <Button color="secondary" type="submit" disabled={disabledSubmit}>
               {isPendingMutateAddBanner ? (
                 <Spinner size="sm" color="white" />
               ) : (

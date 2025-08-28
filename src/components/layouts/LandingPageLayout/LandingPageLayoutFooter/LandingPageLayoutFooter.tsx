@@ -16,7 +16,7 @@ const LandingPageLayoutFooter = () => {
         <div>
           <h4 className="text-xl text-white">Customer Service</h4>
           <p className="text-gray-600">
-            <Link href="mailto:hello@acara.id">hello@acara.id</Link> |{" "}
+            <Link href="mailto:hello@karcishub.id">hello@karcishub.id</Link> |{" "}
             <Link href="tell:+621234567890">+62 1234 5678 90</Link>
           </p>
         </div>
@@ -52,7 +52,7 @@ const LandingPageLayoutFooter = () => {
           ))}
         </div>
         <p className="w-full text-center text-gray-600">
-          &copy; Copyright 2025 Acara. All right reserved.
+          &copy; Copyright 2025 KarcisHub. All right reserved.
         </p>
       </div>
     </footer>

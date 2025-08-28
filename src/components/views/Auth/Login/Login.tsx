@@ -36,12 +36,12 @@ function Login() {
       </div>
       <Card>
         <CardBody className="p-8">
-          <h2 className="text-2xl font-bold text-danger-500">Login</h2>
+          <h2 className="text-2xl font-bold text-purple-500">Login</h2>
           <p className="mb-4 mt-2 text-small">
             Don{"'"}t have an account?&nbsp;
             <Link
               href="/auth/register"
-              className="font-semibold text-danger-400"
+              className="font-semibold text-purple-400"
             >
               Register here
             </Link>
@@ -104,7 +104,7 @@ function Login() {
               )}
             />
 
-            <Button color="danger" size="lg" type="submit">
+            <Button color="secondary" size="lg" type="submit">
               {isPendingLogin ? <Spinner color="white" size="sm" /> : "Login"}
             </Button>
           </form>

@@ -86,7 +86,7 @@ const InputFile = (props: PropTypes) => {
         className={cn(
           "flex min-h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100",
           className,
-          { "border-danger-500": isInvalid },
+          { "border-purple-500": isInvalid },
         )}
       >
         {preview && (
@@ -101,7 +101,7 @@ const InputFile = (props: PropTypes) => {
               className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded bg-danger-100"
             >
               {isDeleting ? (
-                <Spinner size="sm" color="danger" />
+                <Spinner size="sm" color="secondary" />
               ) : (
                 <CiTrash className="h-5 w-5 text-danger-500" />
               )}
@@ -122,7 +122,7 @@ const InputFile = (props: PropTypes) => {
 
         {isUploading && (
           <div className="flex flex-col items-center justify-center p-5">
-            <Spinner color="danger" />
+            <Spinner color="secondary" />
           </div>
         )}
 

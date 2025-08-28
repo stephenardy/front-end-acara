@@ -36,10 +36,10 @@ function Register() {
       </div>
       <Card>
         <CardBody className="p-8">
-          <h2 className="text-2xl font-bold text-danger-500">Create Account</h2>
+          <h2 className="text-2xl font-bold text-purple-500">Create Account</h2>
           <p className="mb-4 mt-2 text-small">
             Have an account?&nbsp;
-            <Link href="/auth/login" className="font-semibold text-danger-400">
+            <Link href="/auth/login" className="font-semibold text-purple-400">
               Login here
             </Link>
           </p>
@@ -165,7 +165,7 @@ function Register() {
               )}
             />
 
-            <Button color="danger" size="lg" type="submit">
+            <Button color="secondary" size="lg" type="submit">
               {isPendingRegister ? (
                 <Spinner color="white" size="sm" />
               ) : (

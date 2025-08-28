@@ -17,13 +17,7 @@ const Payment = () => {
 
   return (
     <div className="flex w-screen flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-10">
-        <Image
-          src="/images/general/logo.svg"
-          alt="logo"
-          width={180}
-          height={180}
-        />
+      <div className="flex flex-col items-center justify-center">
         <Image
           src={
             status === "success"
@@ -31,18 +25,18 @@ const Payment = () => {
               : "/images/illustrations/pending.svg"
           }
           alt="success"
-          width={300}
-          height={300}
+          width={200}
+          height={200}
         />
       </div>
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-3xl font-bold capitalize text-danger-500">
+      <div className="my-2 flex flex-col items-center text-center">
+        <h1 className="text-3xl font-bold capitalize text-purple-500">
           Transaction {status}
         </h1>
         <Button
           className="mt-4 w-fit"
           variant="bordered"
-          color="danger"
+          color="secondary"
           onPress={() => router.push(`/member/transaction/${order_id}`)}
         >
           Check your transaction here

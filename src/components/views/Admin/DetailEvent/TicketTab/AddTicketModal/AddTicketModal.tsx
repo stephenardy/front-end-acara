@@ -121,7 +121,7 @@ const AddTicketModal = (props: PropTypes) => {
           </ModalBody>
           <ModalFooter>
             <Button
-              color="danger"
+              color="secondary"
               variant="flat"
               onPress={handleOnClose}
               disabled={isPendingMutateAddTicket}
@@ -129,7 +129,7 @@ const AddTicketModal = (props: PropTypes) => {
               Cancel
             </Button>
             <Button
-              color="danger"
+              color="secondary"
               type="submit"
               disabled={isPendingMutateAddTicket}
             >

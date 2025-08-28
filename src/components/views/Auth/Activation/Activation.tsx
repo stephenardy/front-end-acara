@@ -11,13 +11,7 @@ const Activation = (props: PropTypes) => {
   const { status } = props;
   return (
     <div className="flex w-screen flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-10">
-        <Image
-          src="/images/general/logo.svg"
-          alt="logo"
-          width={180}
-          height={180}
-        />
+      <div className="flex flex-col items-center justify-center">
         <Image
           src={
             status === "success"
@@ -29,19 +23,19 @@ const Activation = (props: PropTypes) => {
           height={300}
         />
       </div>
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-3xl font-bold text-danger-500">
+      <div className="mt-4 flex flex-col items-center gap-2 text-center">
+        <h1 className="text-3xl font-bold text-purple-500">
           {status === "success" ? "Activation Success" : "Activation Failed"}
         </h1>
         <p className="text-xl font-bold text-default-500">
           {status === "success"
-            ? "Thank you for register account in Acara"
+            ? "Thank you for register account in KarcisHub"
             : "Confirmation Code is invalid"}
         </p>
         <Button
-          className="mt-4 w-fit"
+          className="w-fit"
           variant="bordered"
-          color="danger"
+          color="secondary"
           onPress={() => router.push("/")}
         >
           Back to home

@@ -37,7 +37,7 @@ const CardEvent = (props: PropTypes) => {
             />
           </CardBody>
           <CardFooter className="flex-col items-start pt-0 text-left">
-            <h2 className="line-clamp-1 text-lg font-bold text-danger">
+            <h2 className="line-clamp-1 text-lg font-bold text-purple-500">
               {event?.name}
             </h2>
             <p className="mb-2 line-clamp-2">{event?.description}</p>

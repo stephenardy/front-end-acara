@@ -65,10 +65,10 @@ const DetailEventCart = (props: PropTypes) => {
           <Divider />
           <Button
             fullWidth
-            color="danger"
+            color="secondary"
             size="md"
             disabled={cart.quantity === 0 || isLoading}
-            className="disabled:bg-danger-200"
+            className="disabled:bg-secondary-200"
             onPress={onCreateOrder}
           >
             {isLoading ? <Spinner size="sm" color="white" /> : "Checkout"}
@@ -77,7 +77,7 @@ const DetailEventCart = (props: PropTypes) => {
       ) : (
         <CardBody>
           <Button
-            color="danger"
+            color="secondary"
             size="lg"
             as={Link}
             href={`/auth/login?callbackUrl=/event/${router.query.slug}`}

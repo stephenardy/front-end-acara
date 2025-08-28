@@ -3,10 +3,10 @@ import Register from "@/components/views/Auth/Register";
 
 function RegisterPage() {
   return (
-    <AuthLayout title="ACARA | Register">
+    <AuthLayout title="KarcisHub | Register">
       <Register />
     </AuthLayout>
   );
 }
 
-export default Register;
+export default RegisterPage;

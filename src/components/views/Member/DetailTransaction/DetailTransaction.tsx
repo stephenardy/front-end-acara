@@ -88,16 +88,16 @@ const DetailTransaction = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <h2 className="text-2xxl font-bold text-danger">
+                        <h2 className="text-2xxl font-bold text-secondary">
                           {dataEvent?.name}
                         </h2>
                         <div className="font-bold">
                           <p className="text-foreground-500">Date</p>
-                          <p className="text-danger">{`${convertTime(dataEvent?.startDate)} - ${convertTime(dataEvent?.endDate)}`}</p>
+                          <p className="text-secondary">{`${convertTime(dataEvent?.startDate)} - ${convertTime(dataEvent?.endDate)}`}</p>
                         </div>
                         <div className="font-bold">
                           <p className="text-foreground-500">Location</p>
-                          <p className="text-danger">
+                          <p className="text-secondary">
                             {dataEvent?.isOnline ? "Online" : "Offline"}
                           </p>
                         </div>
@@ -106,7 +106,7 @@ const DetailTransaction = () => {
                             as={Link}
                             href={`${dataEvent?.location?.address}`}
                             variant="bordered"
-                            color="danger"
+                            color="secondary"
                             className="w-fit"
                           >
                             Join Now
@@ -122,7 +122,7 @@ const DetailTransaction = () => {
         )}
         {dataTransactions?.status === "pending" && (
           <Button
-            color="danger"
+            color="secondary"
             className="w-fit"
             onPress={() =>
               (window as any).snap.pay(dataTransactions?.payment?.token)

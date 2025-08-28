@@ -49,7 +49,7 @@ const DashboardLayoutSidebar = (props: PropTypes) => {
             <ListboxItem
               key={item.key}
               className={cn("my-1 h-12 text-2xl", {
-                "bg-danger-500 text-white": router.pathname.startsWith(
+                "bg-purple-500 text-white": router.pathname.startsWith(
                   item.href,
                 ),
               })}

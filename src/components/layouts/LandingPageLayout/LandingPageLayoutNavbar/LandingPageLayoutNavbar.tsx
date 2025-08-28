@@ -62,9 +62,12 @@ const LandingPageLayoutNavbar = () => {
               key={`nav-${item.label}`}
               as={Link}
               href={item.href}
-              className={cn("font-medium text-default-700 hover:text-danger", {
-                "font-bold text-danger-500": router.pathname === item.href,
-              })}
+              className={cn(
+                "font-medium text-default-700 hover:text-secondary",
+                {
+                  "font-bold text-purple-500": router.pathname === item.href,
+                },
+              )}
             >
               {item.label}
             </NavbarItem>
@@ -108,7 +111,7 @@ const LandingPageLayoutNavbar = () => {
                 )
               ) : (
                 <ListboxItem key="loading">
-                  <Spinner color="danger" size="sm" />
+                  <Spinner color="secondary" size="sm" />
                 </ListboxItem>
               )}
             </Listbox>
@@ -121,7 +124,7 @@ const LandingPageLayoutNavbar = () => {
               <NavbarItem key={`button-${item.label}`}>
                 <Button
                   as={Link}
-                  color="danger"
+                  color="secondary"
                   href={item.href}
                   variant={item.variant as ButtonProps["variant"]}
                 >
@@ -179,9 +182,9 @@ const LandingPageLayoutNavbar = () => {
               <Link
                 href={item.href}
                 className={cn(
-                  "font-medium text-default-700 hover:text-danger",
+                  "font-medium text-default-700 hover:text-secondary",
                   {
-                    "font-bold text-danger": router.pathname === item.href,
+                    "font-bold text-purple-500": router.pathname === item.href,
                   },
                 )}
               >
@@ -195,7 +198,7 @@ const LandingPageLayoutNavbar = () => {
                 <NavbarMenuItem>
                   <Link
                     href="/admin/event"
-                    className="font-medium text-default-700 hover:text-danger"
+                    className="font-medium text-default-700 hover:text-secondary"
                   >
                     Admin
                   </Link>
@@ -205,7 +208,7 @@ const LandingPageLayoutNavbar = () => {
                 <NavbarMenuItem>
                   <Link
                     href="/member/profile"
-                    className="font-medium text-default-700 hover:text-danger"
+                    className="font-medium text-default-700 hover:text-secondary"
                   >
                     Profile
                   </Link>
@@ -229,7 +232,7 @@ const LandingPageLayoutNavbar = () => {
                   <Button
                     as={Link}
                     href={item.href}
-                    color="danger"
+                    color="secondary"
                     fullWidth
                     variant={item.variant as ButtonProps["variant"]}
                     size="md"

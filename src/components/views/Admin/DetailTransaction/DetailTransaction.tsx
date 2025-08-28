@@ -81,16 +81,16 @@ const DetailTransaction = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <h2 className="text-2xxl font-bold text-danger">
+                        <h2 className="text-2xxl font-bold text-purple-500">
                           {dataEvent?.name}
                         </h2>
                         <div className="font-bold">
                           <p className="text-foreground-500">Date</p>
-                          <p className="text-danger">{`${convertTime(dataEvent?.startDate)} - ${convertTime(dataEvent?.endDate)}`}</p>
+                          <p className="text-purple-500">{`${convertTime(dataEvent?.startDate)} - ${convertTime(dataEvent?.endDate)}`}</p>
                         </div>
                         <div className="font-bold">
                           <p className="text-foreground-500">Location</p>
-                          <p className="text-danger">
+                          <p className="text-purple-500">
                             {dataEvent?.isOnline ? "Online" : "Offline"}
                           </p>
                         </div>
@@ -99,7 +99,7 @@ const DetailTransaction = () => {
                             as={Link}
                             href={`${dataEvent?.location?.address}`}
                             variant="bordered"
-                            color="danger"
+                            color="secondary"
                             className="w-fit"
                           >
                             Join Now

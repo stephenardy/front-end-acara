@@ -49,7 +49,7 @@ const DetailEvent = () => {
             isLoaded={!!dataEvent?.name}
             className="mb-2 h-8 rounded-lg"
           >
-            <h1 className="text-2xl font-semibold text-danger">
+            <h1 className="text-2xl font-semibold text-secondary">
               {dataEvent?.name}
             </h1>
           </Skeleton>

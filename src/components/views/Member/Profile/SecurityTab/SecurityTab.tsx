@@ -81,7 +81,7 @@ const SecurityTab = () => {
           />
 
           <Button
-            color="danger"
+            color="secondary"
             className="mt-2 disabled:bg-default-500"
             type="submit"
             disabled={isPendingUpdatePassword}
