@@ -13,7 +13,7 @@ interface PropTypes {
 }
 
 const HomeSlider = (props: PropTypes) => {
-  const { banners, isLoading } = props;
+  const { banners = [], isLoading } = props;
 
   return (
     <div className="mx-6 mb-6 h-[25vw] lg:mx-0 lg:mb-0">

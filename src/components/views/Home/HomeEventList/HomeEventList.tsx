@@ -11,7 +11,7 @@ interface PropTypes {
 }
 
 const HomeEventList = (props: PropTypes) => {
-  const { title, events, isLoading, urlMore = "/event" } = props;
+  const { title, events = [], isLoading, urlMore = "/event" } = props;
   return (
     <section className="mb-16">
       <div className="mb-2 flex items-center justify-between px-6 lg:px-0">

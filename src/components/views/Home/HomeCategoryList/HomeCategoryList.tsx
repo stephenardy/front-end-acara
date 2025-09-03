@@ -9,7 +9,7 @@ interface PropTypes {
 }
 
 const HomeCategoryList = (props: PropTypes) => {
-  const { categories, isLoading } = props;
+  const { categories = [], isLoading } = props;
   return (
     <Card className="mx-6 mb-8 p-8 lg:mx-0">
       <CardHeader className="p-0">

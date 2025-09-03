@@ -18,10 +18,13 @@ const Home = () => {
   } = useHome();
   return (
     <div>
-      <HomeSlider banners={dataBanners?.data} isLoading={isLoadingBanners} />
+      <HomeSlider
+        banners={dataBanners?.data ?? []}
+        isLoading={isLoadingBanners}
+      />
       <HomeEventList
         title="Featured Event"
-        events={dataFeaturedEvents?.data}
+        events={dataFeaturedEvents?.data ?? []}
         isLoading={isLoadingFeaturedEvents}
         urlMore="/event?isFeatured=true"
       />
@@ -39,11 +42,11 @@ const Home = () => {
       </Skeleton>
       <HomeEventList
         title="Latest Event"
-        events={dataLatestEvents?.data}
+        events={dataLatestEvents?.data ?? []}
         isLoading={isLoadingLatestEvents}
       />
       <HomeCategoryList
-        categories={dataCategories?.data}
+        categories={dataCategories?.data ?? []}
         isLoading={isLoadingCategories}
       />
     </div>

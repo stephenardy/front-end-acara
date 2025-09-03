@@ -18,7 +18,7 @@ const useHome = () => {
   };
 
   const { data: dataBanners, isLoading: isLoadingBanners } = useQuery({
-    queryKey: ["Banners"],
+    queryKey: ["HomeBanners"],
     queryFn: getBanners,
     enabled: true,
   });
@@ -31,7 +31,7 @@ const useHome = () => {
 
   const { data: dataFeaturedEvents, isLoading: isLoadingFeaturedEvents } =
     useQuery({
-      queryKey: ["FeaturedEvents"],
+      queryKey: ["HomeFeaturedEvents"],
       queryFn: () =>
         getEvents(
           `limit=${LIMIT_EVENT}&page=${PAGE_DEFAULT}&isPublish=true&isFeatured=true`,
@@ -41,7 +41,7 @@ const useHome = () => {
 
   const { data: dataLatestEvents, isLoading: isLoadingLatestEvents } = useQuery(
     {
-      queryKey: ["LatestEvents"],
+      queryKey: ["HomeLatestEvents"],
       queryFn: () =>
         getEvents(`limit=${LIMIT_EVENT}&page=${PAGE_DEFAULT}&isPublish=true`),
       enabled: true,
@@ -56,7 +56,7 @@ const useHome = () => {
   };
 
   const { data: dataCategories, isLoading: isLoadingCategories } = useQuery({
-    queryKey: ["Categories"],
+    queryKey: ["HomeCategories"],
     queryFn: getCategories,
     enabled: true,
   });
