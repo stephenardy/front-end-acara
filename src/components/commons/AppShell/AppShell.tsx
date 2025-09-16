@@ -3,6 +3,7 @@ import { defaultToaster, ToasterContext } from "@/context/ToasterContext";
 import { cn } from "@/utils/cn";
 import { Inter } from "next/font/google";
 import { ReactNode, useContext, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,6 +17,14 @@ interface PropTypes {
 const AppShell = (props: PropTypes) => {
   const { children } = props;
   const { toaster, setToaster } = useContext(ToasterContext);
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      console.log("Authentication error, signing out...");
+      signOut(); // Redirects to the login page
+    }
+  }, [session]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

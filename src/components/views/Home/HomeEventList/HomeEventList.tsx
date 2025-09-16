@@ -22,7 +22,7 @@ const HomeEventList = (props: PropTypes) => {
       </div>
       <div className="grid auto-cols-[20rem] grid-flow-col gap-6 overflow-x-auto py-2 lg:grid-cols-4 lg:px-1">
         {!isLoading
-          ? events.map((event) => (
+          ? events?.map((event) => (
               <CardEvent
                 event={event}
                 key={`card-event-${event._id}`}

@@ -1,29 +1,9 @@
-import environment from "@/config/environtment";
-import authServices from "@/services/auth.service";
 import { SessionExtended } from "@/types/Auth";
-import axios from "axios";
 import { getSession, signOut } from "next-auth/react";
+import { instance } from "./axios";
 
-const headers = {
-  "Content-Type": "application/json",
-};
-
-// for /refresh endpoint, since refreshToken stored in cookies
-const refreshInstance = axios.create({
-  baseURL: environment.API_URL,
-  headers,
-  timeout: 60 * 1000,
-  withCredentials: true, // include cookies on requests
-});
-
-// for public
-const instance = axios.create({
-  baseURL: environment.API_URL,
-  headers,
-  timeout: 60 * 1000,
-});
-
-// --- Request Interceptors for main instance ---
+// will be called before request is sent
+// what it do is basically set the access token to authorization header
 instance.interceptors.request.use(
   async (request) => {
     const session: SessionExtended | null = await getSession();
@@ -36,7 +16,7 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// Add a response interceptor
+// will be called before then or catch
 instance.interceptors.response.use(
   (response) => response,
 
@@ -45,23 +25,12 @@ instance.interceptors.response.use(
 
     // If 401 and not already retrying
     if (error.response?.status === 401 && !originalRequest._retry) {
+      // By setting _retry, we prevent an infinite loop if signOut() itself causes a 401.
       originalRequest._retry = true;
 
-      try {
-        // call refresh endpoint (cookie will be attached automatically)
-        const { data } = await authServices.refresh();
-        // Save new accessToken into your NextAuth session OR memory
-        const newAccessToken = data.data.accessToken;
-
-        // Update header for next request
-        instance.defaults.headers.common["Authorization"] =
-          `Bearer ${newAccessToken}`;
-        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-
-        return instance(originalRequest); // retry original request
-      } catch (err) {
-        signOut(); // Refresh failed → log out
-      }
+      console.error("Axios Interceptor: Caught 401 error. Forcing sign out.");
+      // Redirect to login page after signing out
+      signOut({ callbackUrl: "/auth/login" });
     }
 
     return Promise.reject(error);
@@ -69,4 +38,3 @@ instance.interceptors.response.use(
 );
 
 export default instance;
-export { refreshInstance };

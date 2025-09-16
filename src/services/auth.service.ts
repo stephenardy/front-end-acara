@@ -1,4 +1,4 @@
-import instance, { refreshInstance } from "@/libs/axios/instance";
+import { instance } from "@/libs/axios/axios";
 import endpoint from "./endpoint.constant";
 import {
   IActivation,
@@ -13,8 +13,7 @@ const authServices = {
     instance.post(`${endpoint.AUTH}/register`, payload),
   activation: (payload: IActivation) =>
     instance.post(`${endpoint.AUTH}/activation`, payload),
-  login: (payload: ILogin) =>
-    instance.post(`${endpoint.AUTH}/login`, payload, { withCredentials: true }), //withCredentials:true karena perlu simpan refreshToken di cookies
+  login: (payload: ILogin) => instance.post(`${endpoint.AUTH}/login`, payload),
   getProfileWithToken: (token: string) =>
     instance.get(`${endpoint.AUTH}/me`, {
       headers: {
@@ -26,13 +25,6 @@ const authServices = {
     instance.put(`${endpoint.AUTH}/update-profile`, payload),
   updatePassword: (payload: IUpdatePassword) =>
     instance.put(`${endpoint.AUTH}/update-password`, payload),
-  refresh: () =>
-    refreshInstance.post(
-      // pakai refreshInstance karena beda handle yg pakai cookie beda sama instance biasa
-      `${endpoint.AUTH}/refresh`,
-      {},
-      { withCredentials: true }, //withCredentials:true karena ambil refreshToken dari cookies
-    ),
 };
 
 export default authServices;

@@ -27,10 +27,16 @@ interface UserExtended extends User {
 interface SessionExtended extends Session {
   accessToken?: string;
   refreshToken?: string;
+  // error?: string;
+  // user?: UserExtended;
 }
 
 interface JWTExended extends JWT {
   user?: UserExtended;
+  // accessToken?: string;
+  // refreshToken?: string;
+  // accessTokenExpires?: number;
+  // error?: string;
 }
 
 interface IProfile {

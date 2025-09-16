@@ -32,7 +32,7 @@ const HomeSlider = (props: PropTypes) => {
             disableOnInteraction: false,
           }}
         >
-          {banners.map((banner: IBanner) => (
+          {banners?.map((banner: IBanner) => (
             <SwiperSlide key={banner._id}>
               <Image
                 src={`${banner.image}`}
